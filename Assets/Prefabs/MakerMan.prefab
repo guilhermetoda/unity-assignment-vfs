@@ -2815,14 +2815,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e97ab2203b2ccf4fbc041219a6bf2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeamNumber: 0
+  TeamNumber: 1
   _Emission: 30
   _LaserPrefab: {fileID: 2348351300877024395, guid: b404caa443f827546a72091d88eba2c0,
     type: 3}
-  _Health: 100
+  _MaxHealth: 100
   _AttackDamage: 1
+  _CrazyBombPrefab: {fileID: 4148663291806520849, guid: eb8ef2f3d00bf27469bb5ef934ac6714,
+    type: 3}
   _AttackRadius: 5
+  _PushRadius: 2
   _AttackCD: 1
+  _CrazyBulletsCD: 10
   _UnitsLayerMask:
     serializedVersion: 2
     m_Bits: 512

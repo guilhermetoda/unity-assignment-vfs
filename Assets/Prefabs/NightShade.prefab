@@ -1802,7 +1802,7 @@ GameObject:
   - component: {fileID: 136858396074839862}
   - component: {fileID: 114813693412070196}
   - component: {fileID: 114879089423029636}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NightShade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1904,6 +1904,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TeamNumber: 0
   _Emission: 15
+  _LaserPrefab: {fileID: 2348351300877024395, guid: b404caa443f827546a72091d88eba2c0,
+    type: 3}
+  _MaxHealth: 100
+  _AttackDamage: 8
+  _CrazyBombPrefab: {fileID: 4148663291806520849, guid: eb8ef2f3d00bf27469bb5ef934ac6714,
+    type: 3}
   _MoveSpeed: 5
   _SprintKey: 304
   _SprintMult: 5

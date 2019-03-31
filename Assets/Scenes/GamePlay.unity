@@ -436,10 +436,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MakerMan
       objectReference: {fileID: 0}
-    - target: {fileID: 1722104737374490, guid: af2c3a767622d9f4287212ef48ed4174, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 4686538028328760, guid: af2c3a767622d9f4287212ef48ed4174, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.871222
@@ -484,27 +480,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 54571121099288444, guid: af2c3a767622d9f4287212ef48ed4174,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114679096966801560, guid: af2c3a767622d9f4287212ef48ed4174,
-        type: 3}
-      propertyPath: TeamNumber
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114679096966801560, guid: af2c3a767622d9f4287212ef48ed4174,
-        type: 3}
-      propertyPath: _LaserPrefab
-      value: 
-      objectReference: {fileID: 2348351300877024395, guid: b404caa443f827546a72091d88eba2c0,
-        type: 3}
-    - target: {fileID: 114679096966801560, guid: af2c3a767622d9f4287212ef48ed4174,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af2c3a767622d9f4287212ef48ed4174, type: 3}
 --- !u!1001 &1434265163
@@ -517,10 +492,6 @@ PrefabInstance:
     - target: {fileID: 1720230665628606, guid: 675dab03751eab749af32753879fd411, type: 3}
       propertyPath: m_Name
       value: NightShade
-      objectReference: {fileID: 0}
-    - target: {fileID: 1720230665628606, guid: 675dab03751eab749af32753879fd411, type: 3}
-      propertyPath: m_Layer
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4400502477573830, guid: 675dab03751eab749af32753879fd411, type: 3}
       propertyPath: m_LocalPosition.x
@@ -565,17 +536,6 @@ PrefabInstance:
     - target: {fileID: 4400502477573830, guid: 675dab03751eab749af32753879fd411, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114879089423029636, guid: 675dab03751eab749af32753879fd411,
-        type: 3}
-      propertyPath: _LaserPrefab
-      value: 
-      objectReference: {fileID: 2348351300877024395, guid: b404caa443f827546a72091d88eba2c0,
-        type: 3}
-    - target: {fileID: 114879089423029636, guid: 675dab03751eab749af32753879fd411,
-        type: 3}
-      propertyPath: _Health
-      value: 5000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 675dab03751eab749af32753879fd411, type: 3}

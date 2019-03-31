@@ -10,8 +10,15 @@ public class AIController : AUnit
 	[SerializeField]
 	private float _AttackRadius = 5f;
 
+	
+	[SerializeField]
+	private float _PushRadius = 2f;
+
 	[SerializeField, Tooltip("Time in Seconds")]
 	private float _AttackCD = 1f;
+
+	[SerializeField, Tooltip("Time in Seconds")]
+	private float _CrazyBulletsCD = 10f;
 
 	[SerializeField]
 	private LayerMask _UnitsLayerMask;
@@ -64,8 +71,8 @@ public class AIController : AUnit
 			while(_TargetOutpost == null)
 			{
 				LookForOutpost();
-				//EnemyCloser();
-				//LookForEnemy();
+				EnemyCloser();
+				LookForEnemy();
 				yield return null;
 			}
 
@@ -77,8 +84,8 @@ public class AIController : AUnit
 			_Agent.SetDestination(_TargetOutpost.transform.position);
 			while(_Agent.remainingDistance > _Agent.stoppingDistance)
 			{
-				//LookForEnemy();
-				//EnemyCloser();
+				LookForEnemy();
+				EnemyCloser();
 				yield return null;
 			}
 
@@ -89,8 +96,8 @@ public class AIController : AUnit
 		{
 			while(_TargetOutpost.CurrentTeam != TeamNumber || _TargetOutpost.CaptureValue < 1f)
 			{
-				//LookForEnemy();
-				//EnemyCloser();
+				LookForEnemy();
+				EnemyCloser();
 				yield return null;
 			}
 
@@ -104,7 +111,7 @@ public class AIController : AUnit
 			_Agent.ResetPath();
 
 			float shootTimer = 0f;
-			while(_TargetEnemy !=null && _TargetEnemy.GetIsAlive()) 
+			while(_TargetEnemy != null && _TargetEnemy.GetIsAlive()) 
 			{
 				shootTimer += Time.deltaTime;
 				transform.LookAt(_TargetEnemy.transform);
@@ -134,6 +141,7 @@ public class AIController : AUnit
 			_Agent.ResetPath();
 
 			float shootTimer = 0f;
+			float crazyBombTimer = 10f;
 			while(_TargetEnemy !=null && _TargetEnemy.GetIsAlive()) 
 			{
 				shootTimer += Time.deltaTime;
@@ -144,6 +152,14 @@ public class AIController : AUnit
 					shootTimer = 0;
 					ShootLasersFromEyes(_TargetEnemy.transform.position + Vector3.up, _TargetEnemy.transform);
 				}
+
+				// if the health of the AI is lower than 33%, the AI will shoot the crazy bomb with crazy bullet
+				if (GetHealth() < GetMaxHealth() /3 && crazyBombTimer >= _CrazyBulletsCD) 
+				{
+					crazyBombTimer = 0f;
+					ShootCrazyBomb();
+				}
+
 				yield return null;
 			}
 			
@@ -170,7 +186,8 @@ public class AIController : AUnit
 
 	private void EnemyCloser() 
 	{
-		var closerToMe = Physics.OverlapSphere(transform.position, _AttackRadius, _UnitsLayerMask);
+		// If the enemy is too close, push the enemy away.
+		var closerToMe = Physics.OverlapSphere(transform.position, _PushRadius, _UnitsLayerMask);
 		foreach (var item in closerToMe) 
 		{
 			var otherUnit = item.GetComponent<AUnit>();

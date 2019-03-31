@@ -84,33 +84,18 @@ public class PlayerController : AUnit
         
         transform.Rotate(0f, mouseX, 0f);
         
-
         _CurrentAngle += mouseY;
+        // Checks if the angle is between 90f and -90f
         if (_CurrentAngle < 90f && _CurrentAngle > -90f) 
         {
             _CamPivot.Rotate(-mouseY, 0, 0);
         }
         else 
         {
+            // if the angle is higher or lower, clamp the angle!
             _CurrentAngle = Mathf.Clamp(_CurrentAngle, -90f, 90f);
         }
-        
-        //_CamPivot.Rotate(Mathf.Clamp(-mouseY, -0.47f, 0.47f), 0, 0);
 
-        //_CamPivot.Rotate(Mathf.Clamp(mouseY, -0.47f, 0.47f), 0f, 0f);
- 
-        //Camera rotation only allowed if game us not paused
-        //_CamPivot.transform.rotation = Quaternion.Euler(-rotY, 0f, 0f);
-        //_CamPivot.Rotate(-mouseY, 0, 0);
-        
-        // if (_CamPivot.transform.rotation.eulerAngles.x > -85f && _CamPivot.transform.rotation.eulerAngles.x < 85f) 
-        // {
-        //     _CamPivot.Rotate(-mouseY, 0, 0);
-        // }
-        // else 
-        // {
-            
-        // }
         
         
     }
@@ -147,20 +132,24 @@ public class PlayerController : AUnit
     private void ApplyMovePhysics()
     {
         
+        // SelectedSpeed starts if the move speed
         float _SelectedSpeed = _MoveSpeed;
-        //Player moving backwards
+        
+        //Checks if the Player is moving backwards
         if (_ZInput < 0) 
         {
-            _BackwardsSpeed = _MoveSpeed / 3; 
+            // Applying the backward speed (1/3 of the Speed)
+            _BackwardsSpeed = _MoveSpeed * 0.33f; 
             _SelectedSpeed = _BackwardsSpeed;
         }
-        
+        // If the player is moving sideways 
         if (_XInput != 0) 
         {
-            _SidewaysSpeed = (_MoveSpeed*2) / 3;
+            // Applying the sideway speed (2/3 of the speed)
+            _SidewaysSpeed = _MoveSpeed * 0.66f;
             _SelectedSpeed = _SidewaysSpeed;
         }
-        Debug.Log(_SelectedSpeed);
+        
         var newVel = new Vector3(_XInput, 0f, _ZInput) * _SelectedSpeed * _SpeedMult;
         newVel = transform.TransformVector(newVel);
         

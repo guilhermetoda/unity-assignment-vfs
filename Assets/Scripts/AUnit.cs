@@ -15,19 +15,25 @@ public abstract class AUnit : MonoBehaviour
     private Laser _LaserPrefab;
 
     [SerializeField] 
-    private float _Health = 100f;
+    private float _MaxHealth = 100f;
 
     [SerializeField] 
     private float _AttackDamage = 8f;
+    
+    [SerializeField] 
+    private CrazyBomb _CrazyBombPrefab;
 
     protected bool _IsAlive;
     protected Rigidbody _RB;
     protected Animator _Anim;
     protected Eye[] _Eyes;
 
+    private float _Health;
+
     protected abstract void UnitAwake();
     protected void Awake()
     {
+        _Health = _MaxHealth;
         _IsAlive = true;
         _RB = GetComponent<Rigidbody>();
         _Anim = GetComponent<Animator>();
@@ -41,6 +47,16 @@ public abstract class AUnit : MonoBehaviour
     public bool GetIsAlive() 
     {
         return _IsAlive;
+    }
+
+    public float GetHealth() 
+    {
+        return _Health;
+    }
+
+    public float GetMaxHealth()
+    {
+        return _MaxHealth;
     }
 
     public void SetTeam(int team)
@@ -64,6 +80,13 @@ public abstract class AUnit : MonoBehaviour
             }
         }
         return false;
+    }
+
+    protected void ShootCrazyBomb() 
+    {
+        CrazyBomb crazyBomb = Instantiate(_CrazyBombPrefab, transform.position + (Vector3.up*2), Quaternion.identity);
+        crazyBomb.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 200f, 0f));
+
     }
 
 
