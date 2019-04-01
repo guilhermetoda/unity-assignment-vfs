@@ -77,17 +77,20 @@ public class PlayerController : AUnit
 
     #region ClassFunctions 
 
+    // Update Camera Rotation
     private void UpdateRotations()
     {
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
         
         transform.Rotate(0f, mouseX, 0f);
-        
+
+        // increase the angle using the Input from the Mouse
         _CurrentAngle += mouseY;
         // Checks if the angle is between 90f and -90f
         if (_CurrentAngle < 90f && _CurrentAngle > -90f) 
         {
+            // Rotates only with the Angle is inside of the allowed range.
             _CamPivot.Rotate(-mouseY, 0, 0);
         }
         else 
@@ -96,8 +99,6 @@ public class PlayerController : AUnit
             _CurrentAngle = Mathf.Clamp(_CurrentAngle, -90f, 90f);
         }
 
-        
-        
     }
 
     private void ReadMoveInputs()
@@ -129,10 +130,10 @@ public class PlayerController : AUnit
         }
     }
 
+    // Function that applies the Movement using the inputs read from the Player
     private void ApplyMovePhysics()
     {
-        
-        // SelectedSpeed starts if the move speed
+        // SelectedSpeed starts with the move speed
         float _SelectedSpeed = _MoveSpeed;
         
         //Checks if the Player is moving backwards
@@ -143,13 +144,14 @@ public class PlayerController : AUnit
             _SelectedSpeed = _BackwardsSpeed;
         }
         // If the player is moving sideways 
-        if (_XInput != 0) 
+        if (_XInput < 0f || _XInput > 0f) 
         {
             // Applying the sideway speed (2/3 of the speed)
             _SidewaysSpeed = _MoveSpeed * 0.66f;
             _SelectedSpeed = _SidewaysSpeed;
         }
-        
+        // Applying the velocity with the Inputs
+        // I don't need to use the MathClamp, because, the max value of the Inputs is 1 or -1.
         var newVel = new Vector3(_XInput, 0f, _ZInput) * _SelectedSpeed * _SpeedMult;
         newVel = transform.TransformVector(newVel);
         

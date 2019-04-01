@@ -84,8 +84,11 @@ public abstract class AUnit : MonoBehaviour
 
     protected void ShootCrazyBomb() 
     {
-        CrazyBomb crazyBomb = Instantiate(_CrazyBombPrefab, transform.position + (Vector3.up*2), Quaternion.identity);
-        crazyBomb.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 200f, 0f));
+        // Gets the position plus the Up to make the bullet instatiate in a higher position
+        Vector3 instatiatePosition = transform.position + (Vector3.up * 3);
+        CrazyBomb crazyBomb = Instantiate(_CrazyBombPrefab, instatiatePosition, Quaternion.identity);
+        // Apply a vertical force to make the bullet "Fly" Up before explode
+        crazyBomb.GetComponent<Rigidbody>().AddForce(new Vector3(0f, 400f, 0f));
 
     }
 
@@ -101,6 +104,20 @@ public abstract class AUnit : MonoBehaviour
         if (otherUnit != null && otherUnit.TeamNumber != TeamNumber) 
         {
             otherUnit.OnHit(_AttackDamage);
+        }
+    }
+
+    // Healing the play
+    public void Heal(float healingPoints) 
+    {
+        if (_Health < _MaxHealth)
+        {
+            _Health += healingPoints;
+            // Clamping Health 
+            if (_Health > _MaxHealth)
+            {
+                _Health = _MaxHealth;
+            }
         }
     }
 

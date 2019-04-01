@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class CrazyBomb : MonoBehaviour
 {
-
+    // Number of bullets
     [SerializeField] 
-    private int _numberOfBullets = 10;
+    private int _NumberOfBullets = 10;
+    // Life Time of the Crazy Bomb
     [SerializeField]
-    private float _lifeTime = 1f;
+    private float _LifeTime = 1f;
 
     [SerializeField]
-    private GameObject _bulletPrefab;
-
-    [SerializeField]
-    private float _velocity = 5f;
-
-    private Rigidbody _rigidBody;
-     
+    private GameObject _BulletPrefab;
 
     private void Awake()
     {
-        _rigidBody = GetComponent<Rigidbody>();
-
-        Invoke("Explosion", _lifeTime);
+        Invoke("Explosion", _LifeTime);
     }
 
     private void Explosion() 
@@ -31,8 +24,8 @@ public class CrazyBomb : MonoBehaviour
         // Destroy the Crazy bomb bullet
         Destroy(gameObject);
         
-        // Spawn one projectile at every 10 degrees
-        for (int i = 0; i < _numberOfBullets; i++)
+        // Spawn one projectile at every X degrees
+        for (int i = 0; i < _NumberOfBullets; i++)
         {
             float angle = i * 1f;
             //spread rotation
@@ -42,7 +35,7 @@ public class CrazyBomb : MonoBehaviour
             Quaternion spawnRotation = transform.rotation * spreadRotation;
 
             //Spawn the bullet
-            Instantiate(_bulletPrefab, transform.position, spawnRotation);
+            Instantiate(_BulletPrefab, transform.position, spawnRotation);
         }
     }
  

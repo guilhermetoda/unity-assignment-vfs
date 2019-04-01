@@ -105,11 +105,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0f71182e4f7794290b3d4ed3b3fc9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfBullets: 180
-  _lifeTime: 1
-  _bulletPrefab: {fileID: 6950131621545385686, guid: 45fca9eb439a8f24aa371cdac6bc2cb2,
+  _NumberOfBullets: 180
+  _LifeTime: 1
+  _BulletPrefab: {fileID: 6950131621545385686, guid: 45fca9eb439a8f24aa371cdac6bc2cb2,
     type: 3}
-  _velocity: 5
 --- !u!54 &4148663291806520862
 Rigidbody:
   m_ObjectHideFlags: 0
